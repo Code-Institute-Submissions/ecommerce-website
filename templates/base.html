@@ -1,0 +1,159 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ECommerce</title>
+
+    {% block head_style %}
+    <link rel="stylesheet" href="https://bootswatch.com/3/sandstone/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="{% static 'css/etalage.css' %}" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="{% static 'css/fwslider.css' %}" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" rel="stylesheet" media="screen">
+     <link rel="stylesheet" href="{% static 'css/style-2.css' %}" rel="stylesheet" media="screen">
+    <style>
+    .navbar-default {background-color:black;}
+    .navbar-default .navbar-nav>li>a  {padding-right: 50px;
+    color:weight;
+    position:relative;
+    }
+    </style>
+    {% endblock head_style %}
+    
+    {% block head_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script src="/static/js/jquery.min.js"></script>
+    <!--<script src="/static/js/jquery.easydropdown.js"></script>-->
+    <!--start slider -->
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% endblock head_js %}
+</head>
+<body>
+    <!-- Fixed masthead -->
+    <nav class="navbar navbar-masthead navbar-default navbar-fixed-top">
+        <div class="container-header">
+            <div class="header-top">
+              
+                <a class="navbar-brand" href="/"><img src= "{{ MEDIA_URL }}images/logo.png" alt=""/><h1>Three Peaks Sports</a></h1>
+
+            
+
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'profile' %}"><i class="fa fa-user"></i> Profile</a></li>
+                        <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                    {%  else %}
+                        <li><a href="{% url 'signup' %}"><i class="fa fa-user-plus"></i> Sign up</a></li>
+                        <li><a href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Log In</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'view_cart' %}"><i class="fa fa-shopping-cart"></i> Cart
+                        {% if items_in_cart > 0 %}
+                        <label class="badge badge-light">{{ items_in_cart }}</label>
+                        {% endif %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    {% if messages %}
+        <div class="alert alert-success">
+            <div class="messages">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    
+    <div class="container">
+        <br>
+        <div class="col-md-3">
+        
+                {% for category in categories %}
+              
+                <p><a href="{% url 'home' %}?category={{ category.id }}">{{category.name}}</a></p>
+                {% endfor %}
+        </div>
+        <div class="col-md-9">
+        <div class="row">
+        {% block content %}
+        <div class="content">
+        </div>
+
+         {% endblock %}
+        </div>
+        </div>
+    </div>
+    <footer>
+    <div class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3">
+						<ul class="footer_box">
+							<h4>Products</h4>
+							<li><a href="/categories/2">Mens</a></li>
+							<li><a href="/categories/3">Womens</a></li>
+							<li><a href="/categories/4">Youth</a></li>
+							<li><a href="/categories/5">Snowboards</a></li>
+							<li><a href="/categories/6">View All</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<ul class="footer_box">
+							<h4>About</h4>
+							<li><a href="#">Careers and internships</a></li>
+							<li><a href="#">Sponserships</a></li>
+							<li><a href="#">team</a></li>
+							<li><a href="#">Catalog Request/Download</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<ul class="footer_box">
+							<h4>Customer Support</h4>
+							<li><a href="#">Contact Us</a></li>
+							<li><a href="#">Shipping and Order Tracking</a></li>
+							<li><a href="#">Easy Returns</a></li>
+							<li><a href="#">Warranty</a></li>
+							<li><a href="#">Replacement Binding Parts</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<ul class="footer_box">
+							<h4>Newsletter</h4>
+							<div class="footer_search">
+				    		   <form>
+				    			<input type="text" value="Enter your email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your email';}">
+				    			<input type="submit" value="Go">
+				    		   </form>
+					        </div>
+							<ul class="social">	
+							  <li class="facebook"><a href="#"><span> </span></a></li>
+							  <li class="twitter"><a href="#"><span> </span></a></li>
+							  <li class="instagram"><a href="#"><span> </span></a></li>	
+							  <li class="pinterest"><a href="#"><span> </span></a></li>	
+							  <li class="youtube"><a href="#"><span> </span></a></li>										  				
+						    </ul>
+		   					
+						</ul>
+					</div>
+				</div>
+				
+   				</div>
+			</div>
+            </footer>
+            </body>
+</html>

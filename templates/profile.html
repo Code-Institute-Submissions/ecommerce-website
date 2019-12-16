@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load staticfiles %}  
+{%load static %}
+{% block style %}
+<head>
+<style>
+p.t {font-weight:bold;
+}
+
+
+</style>
+</head>
+
+{% endblock style%}
+
+{% block content %}
+<div class="container">
+<h3 style='padding-left=40px'> Profile</h3>
+				<div class="row">
+					<div class="col-md-3">
+                
+
+<ul>
+
+<li><p class="t"> Username: {{ user.username }}</p></li>
+<li><p class="t"> Email: {{ user.email }}</p></li>
+<li><p class="t"> First name: {{ user.first_name }} </p></li>
+<li><p class="t"> Last name:{{ user.last_name }}</p></li>
+<li><p class="t"> Date joined: {{user.date_joined}}</p></li> 
+<li><p class="t"> Last Login: {{user.last_login}}</p></li>
+</ul>
+</div>
+</div>
+</div>
+{% endblock content %}
