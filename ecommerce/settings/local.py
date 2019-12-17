@@ -33,7 +33,7 @@ DEBUG = os.environ.get('DEBUG', False)
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ['127.0.0.1', 'https://e-commerce-board350.herokuapp.com/']
+ALLOWED_HOSTS = [ 'https://e-commerce-10.herokuapp.com/']
 
 
 # Application definition
@@ -124,16 +124,6 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': dj_database_url.parse(os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3"))
-# }
-
-DATABASE_URL = 'postgresql://localhost'
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         default=config('DATABASE_URL')
-#     )
-# }
 
 DATABASES = {
     "default": {
@@ -141,7 +131,7 @@ DATABASES = {
         "NAME": "EduardoP",
         "USER": "EduardoP",
         "PASSWORD": "EduardoP",
-        "HOST": "localhost",
+        "HOST": "127.0.0.1",
         "PORT": "5432",
     }
 }
