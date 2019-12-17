@@ -24,18 +24,18 @@ def signup(request):
             profile.save()
             
             username = user_form.cleaned_data.get('username')
-            raw_password = user_form.cleaned_data.get('password1')
+            raw_password = user_form.cleaned_data.get('password')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return render(request, 'registration/signup.html',  context_instance=RequestContext(request))
-    else:
-        user_form = SignUpForm()
-        profile_form = ProfileForm()
-        return render(request, 'registration/signup.html',  
-            {
-                'user_form': user_form, 
-                'profile_form': profile_form
-            })
+            return HttpResponseRedirect('profile.html')
+    
+    user_form = SignUpForm()
+    profile_form = ProfileForm()
+    return render(request, 'registration/signup.html',  
+        {
+            'user_form': user_form, 
+            'profile_form': profile_form
+        })
 def update_profile(request, user_id):
     user = User.objects.get(pk=user_id)
     user.profile.bio = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit...'

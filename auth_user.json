@@ -1,0 +1,110 @@
+[
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$180000$Gl8oW1KL0qKf$L6n4kvkr6JETnL1myKqTc9zqzNkPVrEmjr6+XVDI7iU=",
+        "last_login": "2019-12-17T12:22:46.243Z",
+        "is_superuser": true,
+        "username": "eduardop",
+        "first_name": "",
+        "last_name": "",
+        "email": "eduardop@tcd.ie",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2019-12-17T11:29:18.037Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$180000$66IjWy5RJM7G$9BEc/5kKK0u2pMFEGkOvdbgdJpmk0s8tDb5g2QWy7v8=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test-user123",
+        "first_name": "tester",
+        "last_name": "John",
+        "email": "Doe@yahoo.ie",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2019-12-17T11:37:40.059Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$180000$SRv1RzNUhkeA$SMFtdyDCBEfBjP0ZgmsRBnE5sWHTRibzhlM6ULSEUwk=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "KennethwJ",
+        "first_name": "Eduardo",
+        "last_name": "de Castro",
+        "email": "Tokyo@yahoo.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2019-12-17T12:07:39.768Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$180000$eAQU90hdfHNK$w+v7nLv4Sv8C/TTHdVkGsJQQFiL3LBEGVkN81Ri7yf4=",
+        "last_login": "2019-12-17T12:27:49.611Z",
+        "is_superuser": true,
+        "username": "Eduardop",
+        "first_name": "",
+        "last_name": "",
+        "email": "eduardop@tcd.ie",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2019-12-17T12:15:34.228Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$180000$1AXHKeHAUvry$uu4JkhJ+K1fMF8SbET3ND/D+7vGNMYxmzA2Oo+I9yqo=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "231312",
+        "first_name": "Eduardo",
+        "last_name": "de Castro",
+        "email": "eduardop@tcd.ie",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2019-12-17T12:31:35.727Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 7,
+    "fields": {
+        "password": "pbkdf2_sha256$180000$4apxL5u1W44S$nYx0zYLGoBggFVa7r2x7eX6Eo6oOYol+DxhBFq40DQQ=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test12345",
+        "first_name": "Eduardo",
+        "last_name": "de Castro",
+        "email": "test-user123@yahoo.ie",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2019-12-17T12:42:17.983Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]
