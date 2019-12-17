@@ -127,16 +127,18 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 #DATABASE URL:postgresql://EduardoP@127.0.0.1:5000/EduardoP
 
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "EduardoP",
         "USER": "EduardoP",
         "PASSWORD": "",
-        "HOST": "127.0.0.1",
+        "HOST": "localhost",
         "PORT": "5000",
     }
 }
+	
 # db_from_env = dj_database_url.config()
 # DATABASES['default'].update(db_from_env)
 
