@@ -1,5 +1,6 @@
 media
 ˜/virtualenvs/ecommerce-1
 Users
-
+settings.dev
+settings.base
 keys.py

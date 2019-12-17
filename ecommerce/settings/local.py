@@ -15,6 +15,7 @@ import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from decouple import config
+from .dev import *
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -33,7 +34,7 @@ DEBUG = False
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = [".herokuapp.com/", 'https://ecommerce-10.herokuapp.com/']
+ALLOWED_HOSTS = ['127.0.0.1', ".herokuapp.com/", 'https://ecommerce-10.herokuapp.com/']
 
 
 # Application definition
@@ -124,8 +125,7 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-import dj_database_url
-db_from_env = dj_database_url.config()
+
 
 DATABASES = {
     "default": {
