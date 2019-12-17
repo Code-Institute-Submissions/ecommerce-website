@@ -125,16 +125,16 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-
+postgresql://EduardoP@127.0.0.1:5000/EduardoP
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "EduardoP",
         "USER": "EduardoP",
-        "PASSWORD": "EduardoP",
+        "PASSWORD": "",
         "HOST": "127.0.0.1",
-        "PORT": "5432",
+        "PORT": "5000",
     }
 }
 # db_from_env = dj_database_url.config()
