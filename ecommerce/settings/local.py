@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 from django.utils.crypto import get_random_string
 import os
-import dj_database_url
+#import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -28,11 +28,11 @@ SECRET_KEY = get_random_string(50, chars)
 #SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', False)
+DEBUG = os.environ.get('DEBUG', True)
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ['https://e-commerce-board350.herokuapp.com/']
+ALLOWED_HOSTS = ['127.0.0.1', 'https://e-commerce-board350.herokuapp.com/']
 
 
 # Application definition
@@ -45,13 +45,47 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
-
+    'storages',
+  
     'accounts',
     'products',
     'cart',
     'checkout'
     
 ]
+
+
+
+
+
+AWS_HEADERS = {
+    'Expires': 'Thu, 15 Apr 2010 20:00:00 GMT',
+    'Cache-Control': 'max-age=86400',
+}
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
+#AWS Settings
+
+
+
+AWS_STORAGE_BUCKET_NAME = 'ecommerce-1'
+AWS_S3_REGION_NAME = 'eu-west-2'  # e.g. us-east-2
+AWS_ACCESS_KEY_ID = 'AKIAT2JWHGMKNZ53HD6P'
+AWS_SECRET_ACCESS_KEY = 'kjKPMaNLK4elDpDQwdwA4Cw3xPkkS3PONs9fFJKR'
+
+# Tell django-storages the domain to use to refer to static files.
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+# Tell the staticfiles app to use S3Boto3 storage when writing the collected static files (when
+# you run `collectstatic`).
+# STATICFILES_LOCATION = 'static'
+# STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -89,20 +123,20 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3"))
-}
-
 # DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql_psycopg2",
-#         "NAME": "EduardoP",
-#         "USER": "EduardoP",
-#         "PASSWORD": "oakley",
-#         "HOST": "localhost",
-#         "PORT": "5432",
-#     }
+#     'default': dj_database_url.parse(os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3"))
 # }
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "EduardoP",
+        "USER": "EduardoP",
+        "PASSWORD": "oakley",
+        "HOST": "localhost",
+        "PORT": "5432",
+    }
+}
 
 
 

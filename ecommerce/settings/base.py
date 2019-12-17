@@ -10,13 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 from django.utils.crypto import get_random_string
-
 import os
 import dj_database_url
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -35,7 +32,7 @@ DEBUG = os.environ.get('DEBUG', False)
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ['https://e-commerce-board350.herokuapp.com']
+ALLOWED_HOSTS = ['https://e-commerce-board350.herokuapp.com/']
 
 
 # Application definition
@@ -48,11 +45,38 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
+    'storages'
     'accounts',
     'products',
     'cart',
     'checkout'
+    
 ]
+
+
+#AWS Settings
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+AWS_STORAGE_BUCKET_NAME = 'ecommerce-1'
+AWS_S3_REGION_NAME = 'eu-west-2'  # e.g. us-east-2
+AWS_ACCESS_KEY_ID = 'AKIAT2JWHGMKNZ53HD6P'
+AWS_SECRET_ACCESS_KEY = 'kjKPMaNLK4elDpDQwdwA4Cw3xPkkS3PONs9fFJKR'
+
+# Tell django-storages the domain to use to refer to static files.
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+# Tell the staticfiles app to use S3Boto3 storage when writing the collected static files (when
+# you run `collectstatic`).
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+    'CacheControl': 'max-age=94608000',
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -94,6 +118,19 @@ DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3"))
 }
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql_psycopg2",
+#         "NAME": "EduardoP",
+#         "USER": "EduardoP",
+#         "PASSWORD": "oakley",
+#         "HOST": "localhost",
+#         "PORT": "5432",
+#     }
+# }
+
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -128,11 +165,19 @@ USE_L10N = True
 USE_TZ = True
 
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.0/howto/static-files/
+
 
 #Directory setting
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
+#MEDIA SETTINGS:
+
+MEDIA_ROOT = '/Users/EduardoP/Desktop/com-devjoy-ecommerce-master/media'
+
+MEDIA_URL = '/media/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
@@ -147,20 +192,45 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
+# A sample logging configuration. The only tangible logging
+# performed by this configuration is to send an email to
+# the site admins on every HTTP 500 error when DEBUG=False.
+# See http://docs.djangoproject.com/en/dev/topics/logging for
+# more details on how to customize your logging configuration.
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "filters": {"require_debug_false": {"()": "django.utils.log.RequireDebugFalse"}},
+    "handlers": {
+        "mail_admins": {
+            "level": "ERROR",
+            "filters": ["require_debug_false"],
+            "class": "django.utils.log.AdminEmailHandler",
+        }
+    },
+    "loggers": {"django.request": {"handlers": ["mail_admins"], "level": "ERROR", "propagate": True}},
+}
 
-
-
-
-FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
-
+# Settings for django-bootstrap4
+BOOTSTRAP4 = {
+    "error_css_class": "bootstrap4-error",
+    "required_css_class": "bootstrap4-required",
+    "javascript_in_head": True,
+    "include_jquery": True,
+}
 
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+DEFAULT_FROM_EMAIL = 'richecommerce@example.com'
+
 STRIPE_PUBLISHABLE_KEY = os.environ.get("STRIPE_PUBLISHABLE_KEY")
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
 
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+
