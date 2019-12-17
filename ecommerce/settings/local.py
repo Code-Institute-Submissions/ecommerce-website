@@ -29,7 +29,7 @@ SECRET_KEY = get_random_string(50, chars)
 #SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = FALSE
+DEBUG = False
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
