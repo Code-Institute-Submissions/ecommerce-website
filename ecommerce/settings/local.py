@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 from django.utils.crypto import get_random_string
 import os
-#import dj_database_url
+import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from decouple import config
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -28,7 +29,7 @@ SECRET_KEY = get_random_string(50, chars)
 #SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', True)
+DEBUG = os.environ.get('DEBUG', False)
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
@@ -127,19 +128,28 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 #     'default': dj_database_url.parse(os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3"))
 # }
 
+DATABASE_URL = 'postgresql://localhost'
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=config('DATABASE_URL')
+#     )
+# }
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": "EduardoP",
         "USER": "EduardoP",
-        "PASSWORD": "oakley",
+        "PASSWORD": "EduardoP",
         "HOST": "localhost",
         "PORT": "5432",
     }
 }
 
+AWS_DEFAULT_ACL = None
 
 
+# conn = psycopg2.connect(host="localhost",database="EduardoP", user="EduardoP", password="EduardoP")
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
