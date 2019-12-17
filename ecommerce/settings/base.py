@@ -31,11 +31,11 @@ SECRET_KEY = get_random_string(50, chars)
 #SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', True)
+DEBUG = os.environ.get('DEBUG', False)
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ['127.0.0.1:8000', 'https://e-commerce-board350.herokuapp.com/']
+ALLOWED_HOSTS = ['https://e-commerce-board350.herokuapp.com']
 
 
 # Application definition
