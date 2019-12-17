@@ -14,7 +14,6 @@ import os
 import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from decouple import config
 from .dev import *
 
 # Quick-start development settings - unsuitable for production
