@@ -28,11 +28,11 @@ SECRET_KEY = get_random_string(50, chars)
 #SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', True)
+DEBUG = os.environ.get('DEBUG', False)
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ['127.0.0.1', 'https://e-commerce-board350.herokuapp.com/']
+ALLOWED_HOSTS = ['https://e-commerce-board350.herokuapp.com/']
 
 
 # Application definition
@@ -89,20 +89,20 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': dj_database_url.parse(os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3"))
-# }
-
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "EduardoP",
-        "USER": "EduardoP",
-        "PASSWORD": "",
-        "HOST": "localhost",
-        "PORT": "5432",
-    }
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3"))
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql_psycopg2",
+#         "NAME": "EduardoP",
+#         "USER": "EduardoP",
+#         "PASSWORD": "oakley",
+#         "HOST": "localhost",
+#         "PORT": "5432",
+#     }
+# }
 
 
 
