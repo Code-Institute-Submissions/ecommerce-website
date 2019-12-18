@@ -7,7 +7,7 @@ from django.template import RequestContext
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from .models import *
-
+from django.contrib.auth.models import User
  
 def show_profile(request):
     return render(request, "profile.html")
@@ -36,9 +36,14 @@ def signup(request):
             'user_form': user_form, 
             'profile_form': profile_form
         })
-def update_profile(request, user_id):
-    user = User.objects.get(pk=user_id)
-    user.profile.bio = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit...'
-    user.save()
 
 
+
+def create_profile(sender, **kw):
+    user = kw["instance"]
+    if kw["created"]:
+        profile = UserProfile()
+        profile.user = user
+        profile.save()
+
+post_save.connect(create_profile, sender=User
