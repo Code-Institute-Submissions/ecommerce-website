@@ -144,7 +144,7 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 AWS_DEFAULT_ACL = None
 
 
-conn = psycopg2.connect(host="localhost",database="EduardoP", user="EduardoP", password="")
+# conn = psycopg2.connect(host="localhost",database="EduardoP", user="EduardoP", password="")
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
