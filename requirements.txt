@@ -6,6 +6,7 @@ chardet==3.0.4
 dj-database-url==0.5.0
 Django==3.0
 django-forms-bootstrap==3.1.0
+django-mssql==1.8
 django-storages==1.8
 docutils==0.15.2
 envs==1.3

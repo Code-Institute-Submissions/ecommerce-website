@@ -29,11 +29,12 @@ SECRET_KEY = get_random_string(50, chars)
 #SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', True)
+DEBUG = os.environ.get('DEBUG', False)
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ['.herokuapp.com/','https://ecommerce-10.herokuapp.com/', ' https://e-commerce-board350.herokuapp.com/']
+ALLOWED_HOSTS = ['.herokuapp.com/','https://ecommerce-10.herokuapp.com/', 
+' https://e-commerce-board350.herokuapp.com/']
 
 
 # Application definition
@@ -125,6 +126,16 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 #DATABASE URL:postgresql://EduardoP@127.0.0.1:5000/EduardoP
+
+
+if ON_HEROKU:
+    DATABASE_URL = 'postgresql://postgresql'
+else:
+    DATABASE_URL = 'sqlite://' + os.path.join(BASE_DIR, 'db.sqlite3')
+
+DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
+
+
 
 
 # DATABASES = {
