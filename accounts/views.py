@@ -46,4 +46,4 @@ def create_profile(sender, **kw):
         profile.user = user
         profile.save()
 
-post_save.connect(create_profile, sender=User
+post_save.connect(create_profile, sender=User)
