@@ -19,6 +19,8 @@ from .dev import *
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
+ON_HEROKU = os.environ.get('ON_HEROKU')
+HEROKU_SERVER = os.environ.get('HEROKU_SERVER')
 
 chars = 'amnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
 SECRET_KEY = get_random_string(50, chars)
@@ -34,7 +36,7 @@ DEBUG = os.environ.get('DEBUG', False)
 
 
 ALLOWED_HOSTS = ['.herokuapp.com/','https://ecommerce-10.herokuapp.com/', 
-' https://e-commerce-board350.herokuapp.com/']
+' https://e-commerce-board350.herokuapp.com/', '127.0.0.1']
 
 
 # Application definition
@@ -131,7 +133,7 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 if ON_HEROKU:
     DATABASE_URL = 'postgresql://postgresql'
 else:
-    DATABASE_URL = 'sqlite://' + os.path.join(BASE_DIR, 'db.sqlite3')
+    DATABASE_URL = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
 DATABASES = {'default': dj_database_url.config(default=DATABASE_URL)}
 
