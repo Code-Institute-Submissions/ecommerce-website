@@ -42,7 +42,7 @@ def signup(request):
 def create_profile(sender, **kw):
     user = kw["instance"]
     if kw["created"]:
-        profile = UserProfile()
+        profile = Profile()
         profile.user = user
         profile.save()
 
