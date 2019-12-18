@@ -2,9 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from models import UserProfile
-from django.contrib.auth.models import User
 # Create your models here.
 class Profile(models.Model):
     image = models.ImageField(upload_to="avatars", default="avatars/anonymous.png", null=False, blank=False)
