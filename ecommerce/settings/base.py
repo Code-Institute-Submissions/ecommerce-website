@@ -30,7 +30,7 @@ HEROKU_SERVER = os.environ.get('HEROKU_SERVER')
 #SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', True)
+DEBUG = os.environ.get('DEBUG', False)
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
-    'django.core.context_processors.media',
     'storages',
   
     'accounts',
@@ -57,6 +56,26 @@ INSTALLED_APPS = [
     
 ]
 
+
+#MEDIA SETTING
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.0/howto/static-files/
+
+#STATIC SETTINGS            
+STATIC_ROOT ='/Users/EduardoP/Desktop/workspace/ecommerce-10/static'
+STATIC_URL = '/static/'
+# #Unnecessary
+# STATIC_URL = '/static/'
+
+#MEDIA SETTINGS
+
+MEDIA_ROOT = '/Users/EduardoP/Desktop/workspace/ecommerce-10/media'
+MEDIA_URL = '/media/'
+
+#SET PROJECT DIR
+
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 
@@ -86,12 +105,11 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 # you run `collectstatic`).
 # STATICFILES_LOCATION = 'static'
 # STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-STATICFILES_LOCATION = 'static'
+STATICFILES_LOCATION = 'static/'
 STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 
-MEDIAFILES_LOCATION = 'media'
+MEDIAFILES_LOCATION = 'media/'
 DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
 
@@ -202,29 +220,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 
-#Directory setting
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-
-
-#MEDIA SETTING
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.0/howto/static-files/
-
-STATIC_ROOT ='/Users/EduardoP/Desktop/workspace/ecommerce-10/static'
-STATIC_URL = 'static/'
-SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
-# #Unnecessary
-# STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(SITE_ROOT, 'static/')
-]
-
-
-MEDIA_ROOT = '/Users/EduardoP/Desktop/workspace/ecommerce-10/media'
-MEDIA_URL = 'media/'
-
-
+#Directory settin
 
 
 # A sample logging configuration. The only tangible logging
