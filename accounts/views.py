@@ -27,7 +27,7 @@ def signup(request):
             raw_password = user_form.cleaned_data.get('password')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return HttpResponseRedirect('profile.html')
+            return HttpResponseRedirect('/accounts/profile.html')
     
     user_form = SignUpForm()
     profile_form = ProfileForm()
