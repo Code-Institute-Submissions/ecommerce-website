@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 from .dev import *
-
+from django.conf import settings
 from django.utils.crypto import get_random_string
 import os
 import dj_database_url
@@ -30,11 +30,11 @@ HEROKU_SERVER = os.environ.get('HEROKU_SERVER')
 #SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', False)
+DEBUG = os.environ.get('DEBUG', True)
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1', '*', 'https://ecommerce-10.herokuapp.com/']
 
 
 # Application definition
@@ -56,6 +56,26 @@ INSTALLED_APPS = [
     
 ]
 
+
+#MEDIA SETTING
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.0/howto/static-files/
+
+#STATIC SETTINGS            
+STATIC_ROOT ='/Users/EduardoP/Desktop/workspace/ecommerce-10/static'
+STATIC_URL = '/static/'
+# #Unnecessary
+# STATIC_URL = '/static/'
+
+#MEDIA SETTINGS
+
+MEDIA_ROOT = '/Users/EduardoP/Desktop/workspace/ecommerce-10/media'
+MEDIA_URL = '/media/'
+
+#SET PROJECT DIR
+
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 
@@ -85,12 +105,11 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 # you run `collectstatic`).
 # STATICFILES_LOCATION = 'static'
 # STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-STATICFILES_LOCATION = 'static'
+STATICFILES_LOCATION = 'static/'
 STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 
-MEDIAFILES_LOCATION = 'media'
+MEDIAFILES_LOCATION = 'media/'
 DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 
 
@@ -106,6 +125,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'ecommerce.urls'
+REPOSITORY_ROOT = os.path.dirname(BASE_DIR)
 
 TEMPLATES = [
     {
@@ -200,28 +220,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 
-#Directory setting
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+#Directory settin
 
-
-#MEDIA SETTINGS:
-
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# MEDIA_URL = '/media/'
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.0/howto/static-files/
-
-# STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-# #Unnecessary
-# STATIC_URL = '/static/'
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static')
-# ]
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

@@ -23,10 +23,17 @@ from accounts.views import signup, show_profile
 from products.views import product_list, product_detail
 from cart.views import add_to_cart, remove_from_cart, view_cart
 from checkout.views import show_checkout, submit_payment
-
+from django.conf import settings
+from django.conf.urls.static import  static
+from django.conf.urls import url, include
+from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
+from  .settings.local import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('', product_list, name="home"),
     path('products/<int:id>', product_detail, name="product_detail"),
     path('cart/add/', add_to_cart, name='add_to_cart'),
@@ -34,9 +41,10 @@ urlpatterns = [
     path('cart/view/', view_cart, name='view_cart'),
     path('checkout/view/', show_checkout, name='show_checkout'),
     path('checkout/pay/', submit_payment, name='submit_payment'),
-    
+
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', signup, name='signup'),
     path('accounts/profile/', show_profile, name='profile'),
-    path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT}),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('media/<path:path>', serve, {'document_root': MEDIA_ROOT}),
+ ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

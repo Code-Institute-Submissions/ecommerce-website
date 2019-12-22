@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% load static%}
 
 {% block content %}
 <div class='container'>
  <h5> Browse our product categories </h5>
-    <a href="{% url 'home' %}"><img src="static/media/images/logo.png" alt=""/>
+    <a href="{% url 'home' %}"><img src="{% static 'media/images/logo.png' %}" alt=""/>
     <h1>Welcome to our Shop</a></h1></a>
     {% for crumb in breadcrumbs %}
   <a href="{% url 'home' %}?category={{ crumb.id }}">{{ crumb.name }}</a>

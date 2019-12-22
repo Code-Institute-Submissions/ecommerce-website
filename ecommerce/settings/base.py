@@ -9,12 +9,13 @@ https://docs.djangoproject.com/en/2.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
+from .dev import *
+from django.conf import settings
 from django.utils.crypto import get_random_string
 import os
 import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from .dev import *
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
@@ -22,8 +23,6 @@ from .dev import *
 ON_HEROKU = os.environ.get('ON_HEROKU')
 HEROKU_SERVER = os.environ.get('HEROKU_SERVER')
 
-chars = 'amnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
-SECRET_KEY = get_random_string(50, chars)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -31,12 +30,11 @@ SECRET_KEY = get_random_string(50, chars)
 #SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', False)
+DEBUG = os.environ.get('DEBUG', True)
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ['.herokuapp.com/','https://ecommerce-10.herokuapp.com/', 
-' https://e-commerce-board350.herokuapp.com/']
+ALLOWED_HOSTS = ['127.0.0.1', '*', 'https://ecommerce-10.herokuapp.com/']
 
 
 # Application definition
@@ -49,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
+    'django.core.context_processors.media',
     'storages',
   
     'accounts',
@@ -75,7 +74,7 @@ AWS_S3_OBJECT_PARAMETERS = {
 
 
 
-AWS_STORAGE_BUCKET_NAME = 'ecommerce-1'
+AWS_STORAGE_BUCKET_NAME = 'mybucket-last'
 AWS_S3_REGION_NAME = 'eu-west-2'  # e.g. us-east-2
 AWS_ACCESS_KEY_ID =  os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
@@ -89,7 +88,13 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 # STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_LOCATION = 'static'
+STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+
+MEDIAFILES_LOCATION = 'media'
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -102,6 +107,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'ecommerce.urls'
+REPOSITORY_ROOT = os.path.dirname(BASE_DIR)
 
 TEMPLATES = [
     {
@@ -200,24 +206,26 @@ USE_TZ = True
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
-#MEDIA SETTINGS:
-
-MEDIA_ROOT = '/Users/EduardoP/Desktop/com-devjoy-ecommerce-master/media'
-
-MEDIA_URL = '/media/'
+#MEDIA SETTING
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+STATIC_ROOT ='/Users/EduardoP/Desktop/workspace/ecommerce-10/static'
+STATIC_URL = 'static/'
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+# #Unnecessary
 # STATIC_URL = '/static/'
-STATIC_ROOT = 'Users/EduardoP/Desktop/com-devjoy-ecommerce-master'
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-#Unnecessary
-STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(SITE_ROOT, 'static/')
 ]
+
+
+MEDIA_ROOT = '/Users/EduardoP/Desktop/workspace/ecommerce-10/media'
+MEDIA_URL = 'media/'
+
+
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
