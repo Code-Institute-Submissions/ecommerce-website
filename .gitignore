@@ -4,3 +4,6 @@ Users
 settings.dev
 settings.base
 keys.py
+__pycache__
+ecommerce.__pycache__
+ecommerce.settings.__pycache__
