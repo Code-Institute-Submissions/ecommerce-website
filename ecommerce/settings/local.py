@@ -112,7 +112,7 @@ STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 AWS_QUERYSTRING_AUTH = False
 
 MEDIAFILES_LOCATION = 'media/'
-MEDIA_URL = 'http://%s.s3.amazonaws.com/your-folder/' % AWS_STORAGE_BUCKET_NAME
+MEDIA_URL = 'http://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto.S3BotoStorage"
 
 
