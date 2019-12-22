@@ -109,9 +109,11 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 STATICFILES_LOCATION = 'static/'
 STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 
-MEDIAFILES_LOCATION = 'media/'
-DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+AWS_QUERYSTRING_AUTH = False
 
+MEDIAFILES_LOCATION = 'media/'
+MEDIA_URL = 'http://%s.s3.amazonaws.com/your-folder/' % AWS_STORAGE_BUCKET_NAME
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto.S3BotoStorage"
 
 
 MIDDLEWARE = [
